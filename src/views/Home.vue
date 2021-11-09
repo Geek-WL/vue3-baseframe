@@ -7,12 +7,26 @@
 
 <script>
 // @ is an alias to /src
+import { onMounted } from 'vue'
 import HelloWorld from '@/components/HelloWorld.vue'
+import http from '@/http'
 
 export default {
   name: 'Home',
   components: {
     HelloWorld
+  },
+  setup() {
+    onMounted(() => {
+      http.request({
+        url: '/data',
+        params: {
+          num: 10
+        },
+        isShowLoading: false,
+        method: 'GET'
+      })
+    })
   }
 }
 </script>
