@@ -25,7 +25,6 @@ class Request {
       (config) => {
         console.log('全局的请求拦截')
         // 展示loading
-        console.log(this.isShowLoading)
         if (this.isShowLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -75,7 +74,6 @@ class Request {
       if (config.interceptors && config.interceptors.requestInterceptors) {
         config = config.interceptors.requestInterceptors(config)
       }
-      console.log(config.isShowLoading, 'request')
       if (config.isShowLoading === false) {
         this.isShowLoading = config.isShowLoading
       }
@@ -94,6 +92,22 @@ class Request {
           reject(err)
         })
     })
+  }
+
+  get(config) {
+    return this.request({ ...config, method: 'GET' })
+  }
+
+  post(config) {
+    return this.request({ ...config, method: 'POST' })
+  }
+
+  delete(config) {
+    return this.request({ ...config, method: 'DELETE' })
+  }
+
+  patch(config) {
+    return this.request({ ...config, method: 'PATCH' })
   }
 }
 

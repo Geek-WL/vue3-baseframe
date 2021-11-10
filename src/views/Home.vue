@@ -18,13 +18,13 @@ export default {
   },
   setup() {
     onMounted(() => {
-      http.request({
+      http.get({
         url: '/data',
         params: {
           num: 10
         },
-        isShowLoading: false,
-        method: 'GET'
+        isShowLoading: true
+        // method: 'GET'
       })
     })
   }
